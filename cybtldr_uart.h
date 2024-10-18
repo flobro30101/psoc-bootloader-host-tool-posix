@@ -1,6 +1,6 @@
 #include "cybtldr_utils.h"
 
-#define UARTFILE "/dev/ttyAMA0"
+#define UARTFILE "/dev/ttyUSB0"
 
 int OpenConnection(void);
 int CloseConnection(void);

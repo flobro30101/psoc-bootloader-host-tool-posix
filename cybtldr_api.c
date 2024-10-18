@@ -196,7 +196,8 @@ int CyBtldr_EndBootloadOperation(void)
 
 int CyBtldr_ProgramRow(unsigned char arrayID, unsigned short rowNum, unsigned char* buf, unsigned short size)
 {
-    const int TRANSFER_HEADER_SIZE = 11;
+    
+    const int TRANSFER_HEADER_SIZE = 7;
 
     unsigned char inBuf[MAX_COMMAND_SIZE];
     unsigned char outBuf[MAX_COMMAND_SIZE];

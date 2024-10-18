@@ -1,3 +1,4 @@
+#define _DEFAULT_SOURCE
 #include "cybtldr_uart.h"
 #include <stdio.h>
 #include <unistd.h>
@@ -59,20 +60,20 @@ int OpenConnection(void)
     // clear current char size mask, no parity checking,
     // no output processing, force 8 bit input
     //
-    term.c_cflag &= ~(CSIZE | PARENB);
+    term.c_cflag &= ~(CSIZE | PARENB | CRTSCTS);
     term.c_cflag |= CS8;
  
     //
     // One input byte is enough to return from read()
     // Inter-character timer off
     //
-    term.c_cc[VMIN]  = 0; // 0 character is enough
+    term.c_cc[VMIN]  = 7; // 0 character is enough
     term.c_cc[VTIME] = 10; // 1 second timeout
  
     
  	// Set the input/output speed to 9600bps
- 	cfsetispeed( &term, B9600 );
- 	cfsetospeed( &term, B9600 );
+ 	cfsetispeed( &term, B115200 );
+ 	cfsetospeed( &term, B115200 );
   
  	// Now set the term options (set immediately)
  	tcsetattr(fd, TCSAFLUSH, &term);
